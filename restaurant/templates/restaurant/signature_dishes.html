@@ -1,0 +1,109 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}Signature Dishes | Chillout Restaurant{% endblock %}
+
+{% block content %}
+
+<section class="inner-hero signature-hero">
+    <div class="container">
+        <div class="inner-hero-content" data-aos="fade-up">
+            <span class="section-badge">Signature Dishes</span>
+            <h1>Our Most Loved Creations</h1>
+            <p>
+                Discover the standout dishes that define the Chillout dining experience with rich taste, quality ingredients, and memorable presentation.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="signature-page section-space">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Chef’s Specials</span>
+            <h2>Signature Flavours of Chillout</h2>
+            <p>These dishes are crafted to showcase the bold taste, comforting quality, and premium food experience that make Chillout special.</p>
+        </div>
+
+        <div class="signature-page-grid">
+            {% for dish in dishes %}
+                <div class="signature-page-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}0">
+                    <div class="signature-page-image">
+                        {% if dish.image %}
+                            <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+                        {% else %}
+                            <img src="{% static 'restaurant/images/dish-placeholder.jpg' %}" alt="{{ dish.name }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="signature-page-content">
+                        <span class="signature-label">Chef Special</span>
+                        <h3>{{ dish.name }}</h3>
+                        <p>{{ dish.description }}</p>
+
+                        <div class="signature-page-bottom">
+                            {% if dish.price %}
+                                <span class="signature-page-price">₹ {{ dish.price }}</span>
+                            {% endif %}
+                            <a href="{% url 'contact' %}" class="section-link">Enquire Now <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="signature-page-card" data-aos="fade-up">
+                    <div class="signature-page-image">
+                        <img src="{% static 'restaurant/images/dish-placeholder.jpg' %}" alt="Tandoori Platter">
+                    </div>
+                    <div class="signature-page-content">
+                        <span class="signature-label">Chef Special</span>
+                        <h3>Tandoori Platter</h3>
+                        <p>A bold and flavorful platter featuring grilled favorites, rich spice balance, and a premium presentation.</p>
+                    </div>
+                </div>
+
+                <div class="signature-page-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="signature-page-image">
+                        <img src="{% static 'restaurant/images/dish-placeholder.jpg' %}" alt="Mediterranean Mezze">
+                    </div>
+                    <div class="signature-page-content">
+                        <span class="signature-label">Chef Special</span>
+                        <h3>Mediterranean Mezze</h3>
+                        <p>A vibrant and refreshing dish selection that brings together texture, freshness, and global flavor inspiration.</p>
+                    </div>
+                </div>
+
+                <div class="signature-page-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="signature-page-image">
+                        <img src="{% static 'restaurant/images/dish-placeholder.jpg' %}" alt="Carbonara Supreme">
+                    </div>
+                    <div class="signature-page-content">
+                        <span class="signature-label">Chef Special</span>
+                        <h3>Carbonara Supreme</h3>
+                        <p>A rich, creamy, and satisfying signature creation made for guests who enjoy bold comfort food with elegance.</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+<section class="signature-page-cta section-space">
+    <div class="container">
+        <div class="contact-cta-box" data-aos="zoom-in">
+            <span class="section-badge">Taste the Best</span>
+            <h2>Visit Chillout and Enjoy Our Signature Experience</h2>
+            <p class="menu-cta-text">
+                Discover premium dining, authentic flavors, and memorable dishes prepared to impress every food lover.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{% url 'branches' %}" class="btn-primary">View Branches</a>
+                <a href="{% url 'contact' %}" class="btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,366 @@
+@media (max-width: 992px) {
+    .navbar {
+        padding: 20px 25px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        padding: 0 25px 40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+    }
+
+    .call-btn {
+        display: none;
+    }
+
+    .inner-banner h1 {
+        font-size: 38px;
+    }
+}
+@media (max-width: 1100px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .signature-grid,
+    .menu-category-grid,
+    .branches-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .clients-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .welcome-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-cta-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-space {
+        padding: 70px 0;
+    }
+
+    .section-header h2,
+    .welcome-text h2,
+    .contact-cta-box h2 {
+        font-size: 34px;
+    }
+
+    .features-grid,
+    .signature-grid,
+    .menu-category-grid,
+    .branches-grid,
+    .clients-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-image-card img {
+        height: 320px;
+    }
+
+    .contact-cta-box {
+        padding: 35px 20px;
+    }
+}
+@media (max-width: 1100px) {
+    .menu-items-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .menu-category-head {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .inner-hero {
+        padding: 130px 0 80px;
+    }
+
+    .inner-hero-content h1 {
+        font-size: 42px;
+    }
+
+    .menu-items-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-category-head {
+        padding: 22px;
+    }
+
+    .menu-category-head-text h3 {
+        font-size: 32px;
+    }
+
+    .menu-tab-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+@media (max-width: 1100px) {
+    .about-story-grid,
+    .about-highlight-box {
+        grid-template-columns: 1fr;
+    }
+
+    .about-values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-legal-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-story-content h2,
+    .about-highlight-left h2 {
+        font-size: 34px;
+    }
+
+    .about-story-image img {
+        height: 340px;
+    }
+
+    .about-mini-info,
+    .about-values-grid,
+    .about-highlight-right {
+        grid-template-columns: 1fr;
+    }
+
+    .about-story-content,
+    .about-highlight-box,
+    .about-legal-card {
+        padding: 24px;
+    }
+}
+@media (max-width: 1100px) {
+    .branches-page-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .branches-page-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .branches-page-top h3,
+    .branches-connect-box h2 {
+        font-size: 34px;
+    }
+
+    .branches-page-content {
+        padding: 22px;
+    }
+
+    .branches-page-image {
+        height: 220px;
+    }
+
+    .branches-connect-box {
+        padding: 35px 22px;
+    }
+}
+@media (max-width: 1100px) {
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form-left h2 {
+        font-size: 34px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form-left,
+    .contact-form-card {
+        padding: 24px;
+    }
+}
+@media (max-width: 1100px) {
+    .signature-page-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chef-highlight-box {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .signature-page-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .chef-highlight-content {
+        padding: 26px;
+    }
+
+    .chef-highlight-content h2 {
+        font-size: 34px;
+    }
+
+    .signature-page-content h3 {
+        font-size: 26px;
+    }
+
+    .chef-highlight-image img {
+        min-height: 260px;
+    }
+}
+@media (max-width: 1100px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-card,
+    .gallery-card img {
+        min-height: 260px;
+    }
+
+    .gallery-overlay-content h3 {
+        font-size: 22px;
+    }
+}
+@media (max-width: 992px) {
+    .navbar {
+        padding: 18px 20px;
+        position: relative;
+        z-index: 1200;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: #111111;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 100px 24px 30px;
+        gap: 22px;
+        transition: right 0.35s ease;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.45);
+        z-index: 1150;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links li a {
+        display: block;
+        width: 100%;
+        font-size: 18px;
+        color: #ffffff;
+        padding: 10px 0;
+    }
+
+    .nav-links li a.active,
+    .nav-links li a:hover {
+        color: #f5a623;
+    }
+
+    .nav-links li a.active::after,
+    .nav-links li a:hover::after {
+        bottom: 4px;
+    }
+
+    .hamburger {
+        display: flex;
+        position: relative;
+        z-index: 1201;
+    }
+
+    .call-btn {
+        display: none;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo a {
+        font-size: 28px;
+    }
+}
+@media (max-width: 768px) {
+    .menu-image-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-image-modal-content {
+        max-width: 95%;
+        max-height: 85vh;
+    }
+
+    .menu-image-close {
+        top: 14px;
+        right: 18px;
+        font-size: 34px;
+    }
+}
+@media (max-width: 768px) {
+    .branch-image-modal-content {
+        max-width: 95%;
+        max-height: 85vh;
+    }
+
+    .branch-image-close {
+        top: 14px;
+        right: 18px;
+        font-size: 34px;
+    }
+}

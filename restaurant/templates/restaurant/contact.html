@@ -1,0 +1,171 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}Contact | Chillout Restaurant{% endblock %}
+
+{% block content %}
+
+<section class="inner-hero contact-hero">
+    <div class="container">
+        <div class="inner-hero-content" data-aos="fade-up">
+            <span class="section-badge">Contact Us</span>
+            <h1>We’d Love to Hear From You</h1>
+            <p>
+                Reach out to Chillout for enquiries, branch information, dining details, or any assistance you need.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="contact-page section-space">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Get in Touch</span>
+            <h2>Contact Chillout</h2>
+            <p>Whether you want directions, timings, or dining information, we’re here to help.</p>
+        </div>
+
+        <div class="contact-info-grid">
+            <div class="contact-info-card" data-aos="fade-up">
+                <div class="contact-info-icon">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </div>
+                <h3>Call Us</h3>
+                <p>
+                    {% if site_settings and site_settings.phone %}
+                        {{ site_settings.phone }}
+                    {% else %}
+                        +91 6238296908
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="contact-info-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-info-icon">
+                    <i class="fa-regular fa-clock"></i>
+                </div>
+                <h3>Opening Hours</h3>
+                <p>
+                    {% if site_settings and site_settings.opening_hours %}
+                        {{ site_settings.opening_hours }}
+                    {% else %}
+                        8 AM to 11 PM
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="contact-info-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-info-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <h3>Location</h3>
+                <p>
+                    {% if site_settings and site_settings.address %}
+                        {{ site_settings.address }}
+                    {% else %}
+                        9/1542, Thengode, Thrikkakara, Kakkanad, Ernakulam, Kerala, 682030
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        <div class="contact-form-section">
+            <div class="contact-form-grid">
+                <div class="contact-form-left" data-aos="fade-right">
+                    <span class="section-badge">Send a Message</span>
+                    <h2>Let’s Connect</h2>
+                    <p>
+                        Have a question or want more details about our restaurant, branches, or menu? Send us a message and we’ll get back to you.
+                    </p>
+
+                    <div class="contact-quick-actions">
+                        <a href="tel:{% if site_settings and site_settings.phone %}{{ site_settings.phone }}{% else %}+916238296908{% endif %}" class="btn-primary">
+                            Call Now
+                        </a>
+                        <a href="{% url 'branches' %}" class="btn-secondary">
+                            View Branches
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-form-card" data-aos="fade-left">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" id="phone" name="phone" placeholder="Enter your phone number">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="Enter subject">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-primary form-submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="map-section section-space dark-section">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Find Us</span>
+            <h2>Visit Our Location</h2>
+            <p>Come and enjoy the Chillout dining experience at our restaurant location.</p>
+        </div>
+
+        <div class="map-card" data-aos="zoom-in">
+            <iframe
+                src="https://www.google.com/maps?q=Thengode,Thrikkakara,Kakkanad,Ernakulam,Kerala,682030&output=embed"
+                width="100%"
+                height="420"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<section class="contact-page-cta section-space">
+    <div class="container">
+        <div class="contact-cta-box" data-aos="zoom-in">
+            <span class="section-badge">Visit Chillout</span>
+            <h2>Your Next Great Meal Starts Here</h2>
+            <p class="menu-cta-text">
+                Call us, find our branches, or visit us directly to enjoy authentic traditional and modern food in a welcoming atmosphere.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="tel:{% if site_settings and site_settings.phone %}{{ site_settings.phone }}{% else %}+916238296908{% endif %}" class="btn-primary">Call Now</a>
+                <a href="{% url 'menu' %}" class="btn-secondary">Explore Menu</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

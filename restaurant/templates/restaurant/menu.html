@@ -1,0 +1,100 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}Menu | Chillout Restaurant{% endblock %}
+
+{% block content %}
+
+<section class="inner-hero menu-hero">
+    <div class="container">
+        <div class="inner-hero-content" data-aos="fade-up">
+            <span class="section-badge">Our Menu</span>
+            <h1>Explore Our Food Menu</h1>
+            <p>
+                Discover our delicious breakfast, lunch, biriyani, Chinese items, curries, and more through our complete visual menu.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="menu-image-page section-space">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Visual Menu</span>
+            <h2>Our Complete Food Menu</h2>
+            <p>Tap any menu image to view it in a larger size.</p>
+        </div>
+
+        <div class="menu-image-grid">
+            <div class="menu-image-card" data-aos="fade-up">
+                <img src="{% static 'restaurant/images/menu-1.png' %}" alt="Chillout Menu 1" class="menu-popup-image">
+            </div>
+
+            <div class="menu-image-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="{% static 'restaurant/images/menu-2.png' %}" alt="Chillout Menu 2" class="menu-popup-image">
+            </div>
+
+            <div class="menu-image-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="{% static 'restaurant/images/menu-3.png' %}" alt="Chillout Menu 3" class="menu-popup-image">
+            </div>
+
+            <div class="menu-image-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="{% static 'restaurant/images/menu-4.png' %}" alt="Chillout Menu 4" class="menu-popup-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="menu-page-cta section-space dark-section">
+    <div class="container">
+        <div class="contact-cta-box" data-aos="zoom-in">
+            <span class="section-badge">Visit Chillout</span>
+            <h2>Enjoy Our Menu in Person</h2>
+            <p class="menu-cta-text">
+                Visit Chillout and enjoy authentic traditional and modern food prepared with quality, taste, and hospitality.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{% url 'contact' %}" class="btn-primary">Contact Us</a>
+                <a href="{% url 'branches' %}" class="btn-secondary">View Branches</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="menu-image-modal" id="menuImageModal">
+    <span class="menu-image-close" id="menuImageClose">&times;</span>
+    <img class="menu-image-modal-content" id="menuImagePreview" alt="Expanded Menu Image">
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const menuImages = document.querySelectorAll('.menu-popup-image');
+    const menuModal = document.getElementById('menuImageModal');
+    const menuModalImg = document.getElementById('menuImagePreview');
+    const menuModalClose = document.getElementById('menuImageClose');
+
+    menuImages.forEach(img => {
+        img.addEventListener('click', function () {
+            menuModal.style.display = 'flex';
+            menuModalImg.src = this.src;
+        });
+    });
+
+    if (menuModalClose) {
+        menuModalClose.addEventListener('click', function () {
+            menuModal.style.display = 'none';
+        });
+    }
+
+    if (menuModal) {
+        menuModal.addEventListener('click', function (e) {
+            if (e.target === menuModal) {
+                menuModal.style.display = 'none';
+            }
+        });
+    }
+</script>
+{% endblock %}

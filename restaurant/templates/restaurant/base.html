@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Chillout Restaurant{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'restaurant/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'restaurant/css/responsive.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <header>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                {% if site_settings and site_settings.restaurant_name %}
+                    {{ site_settings.restaurant_name }}
+                {% else %}
+                    Chillout
+                {% endif %}
+            </a>
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a></li>
+            <li><a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a></li>
+            <li><a href="{% url 'menu' %}" class="{% if request.resolver_match.url_name == 'menu' %}active{% endif %}">Menu</a></li>
+            <li><a href="{% url 'signature_dishes' %}" class="{% if request.resolver_match.url_name == 'signature_dishes' %}active{% endif %}">Signature Dishes</a></li>
+            <li><a href="{% url 'branches' %}" class="{% if request.resolver_match.url_name == 'branches' %}active{% endif %}">Branches</a></li>
+            <li><a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <a href="tel:{% if site_settings and site_settings.phone %}{{ site_settings.phone }}{% else %}+916238296908{% endif %}" class="call-btn">
+                Call Now
+            </a>
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+</header>
+    {% block content %}{% endblock %}
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-box">
+            <h3>
+                {% if site_settings and site_settings.restaurant_name %}
+                    {{ site_settings.restaurant_name }}
+                {% else %}
+                    Chillout
+                {% endif %}
+            </h3>
+
+            <p>
+                {% if site_settings and site_settings.tagline %}
+                    {{ site_settings.tagline }}
+                {% else %}
+                    Authentic traditional & modern food with Indian and international flavors.
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="footer-box">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'menu' %}">Menu</a></li>
+                <li><a href="{% url 'signature_dishes' %}">Signature Dishes</a></li>
+                <li><a href="{% url 'branches' %}">Branches</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-box">
+            <h4>Contact</h4>
+            <p>
+                <i class="fa-solid fa-phone"></i>
+                {% if site_settings and site_settings.phone %}
+                    {{ site_settings.phone }}
+                {% else %}
+                    +91 6238296908
+                {% endif %}
+            </p>
+            <p>
+                <i class="fa-regular fa-clock"></i>
+                {% if site_settings and site_settings.opening_hours %}
+                    {{ site_settings.opening_hours }}
+                {% else %}
+                    8 AM to 11 PM
+                {% endif %}
+            </p>
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+                {% if site_settings and site_settings.address %}
+                    {{ site_settings.address }}
+                {% else %}
+                    Thengode, Thrikkakara, Kakkanad, Ernakulam, Kerala
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Chillout Restaurant. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<button id="scrollTopBtn" class="scroll-top-btn">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+    <script src="{% static 'restaurant/js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+</script>
+</body>
+</html>

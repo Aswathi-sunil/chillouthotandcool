@@ -1,0 +1,423 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}Home | Chillout Restaurant{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-overlay">
+        <div class="hero-content" data-aos="fade-up">
+            <span class="hero-tag">Premium Dining Experience</span>
+
+            <h1>
+                {% if site_settings and site_settings.hero_title %}
+                    {{ site_settings.hero_title }}
+                {% else %}
+                    Authentic Traditional & Modern Food
+                {% endif %}
+            </h1>
+
+            <p>
+                {% if site_settings and site_settings.hero_subtitle %}
+                    {{ site_settings.hero_subtitle }}
+                {% else %}
+                    Experience delicious Indian and international cuisine, crafted with quality ingredients and served in a warm, premium dining atmosphere.
+                {% endif %}
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{% url 'menu' %}" class="btn-primary">Explore Menu</a>
+                <a href="{% url 'contact' %}" class="btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="welcome-section section-space">
+    <div class="container">
+        <div class="welcome-grid">
+            <div class="welcome-text" data-aos="fade-right">
+                <span class="section-badge">Welcome to Chillout</span>
+                <h2>A Place Where Great Food Meets Great Moments</h2>
+                <p>
+                    {% if about and about.description %}
+                        {{ about.description|truncatewords:45 }}
+                    {% else %}
+                        Welcome to Chillout, where traditional taste and modern dining come together. Enjoy a memorable food journey with Indian and international cuisines prepared with passion, quality, and care.
+                    {% endif %}
+                </p>
+                <a href="{% url 'about' %}" class="section-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="welcome-image-card" data-aos="fade-left">
+                {% if about and about.image %}
+                    <img src="{{ about.image.url }}" alt="About Chillout">
+                {% else %}
+                    <img src="{% static 'restaurant/images/about-placeholder.jpg' %}" alt="About Chillout">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-preview section-space dark-section">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">About Us</span>
+            <h2>Tradition, Taste, and Hospitality Since
+                {% if about and about.established_year %}
+                    {{ about.established_year }}
+                {% else %}
+                    2017
+                {% endif %}
+            </h2>
+            <p>
+                {% if about and about.subtitle %}
+                    {{ about.subtitle }}
+                {% else %}
+                    A restaurant experience shaped by authentic flavors, premium quality, and a welcoming atmosphere.
+                {% endif %}
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="features-section section-space">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Why Choose Us</span>
+            <h2>Everything You Love About Dining</h2>
+            <p>Freshly prepared dishes, rich variety, and a dining experience customers remember.</p>
+        </div>
+
+        <div class="features-grid">
+            {% for feature in features %}
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0 }}0">
+                    <div class="feature-icon">
+                        {% if feature.icon %}
+                            <i class="{{ feature.icon }}"></i>
+                        {% else %}
+                            <i class="fa-solid fa-utensils"></i>
+                        {% endif %}
+                    </div>
+                    <h3>{{ feature.title }}</h3>
+                    <p>{{ feature.description }}</p>
+                </div>
+            {% empty %}
+                <div class="feature-card" data-aos="zoom-in">
+                    <div class="feature-icon"><i class="fa-solid fa-kitchen-set"></i></div>
+                    <h3>Centralised Kitchen</h3>
+                    <p>Prepared with consistency, quality control, and care for every serving.</p>
+                </div>
+
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="feature-icon"><i class="fa-solid fa-bowl-food"></i></div>
+                    <h3>Variety Under One Roof</h3>
+                    <p>Enjoy breakfast, lunch, dinner, snacks, and diverse cuisines in one place.</p>
+                </div>
+
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                    <h3>Hygienic Kitchen</h3>
+                    <p>Every dish is prepared in a clean and carefully maintained cooking environment.</p>
+                </div>
+
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="feature-icon"><i class="fa-solid fa-pepper-hot"></i></div>
+                    <h3>Authentic Flavours</h3>
+                    <p>From traditional dishes to modern plates, every bite is rich in taste.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="signature-section section-space dark-section">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Signature Dishes</span>
+            <h2>Chef’s Special Highlights</h2>
+            <p>Discover some of our most loved and memorable culinary creations.</p>
+        </div>
+
+        <div class="signature-grid">
+            {% for dish in signature_dishes %}
+                <div class="signature-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}0">
+                    <div class="signature-image">
+                        {% if dish.image %}
+                            <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+                        {% else %}
+                            <img src="{% static 'restaurant/images/dish-placeholder.jpg' %}" alt="{{ dish.name }}">
+                        {% endif %}
+                    </div>
+                    <div class="signature-content">
+                        <h3>{{ dish.name }}</h3>
+                        <p>{{ dish.description|truncatewords:20 }}</p>
+                        {% if dish.price %}
+                            <span class="dish-price">₹ {{ dish.price }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+            {% empty %}
+                <div class="signature-card" data-aos="fade-up">
+                    <div class="signature-image">
+                        <img src="{% static 'restaurant/images/dish-placeholder.jpg' %}" alt="Tandoori Platter">
+                    </div>
+                    <div class="signature-content">
+                        <h3>Tandoori Platter</h3>
+                        <p>A bold and flavorful selection of grilled favorites served with a premium touch.</p>
+                    </div>
+                </div>
+
+                <div class="signature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="signature-image">
+                        <img src="{% static 'restaurant/images/dish-placeholder.jpg' %}" alt="Mediterranean Mezze">
+                    </div>
+                    <div class="signature-content">
+                        <h3>Mediterranean Mezze</h3>
+                        <p>A vibrant platter celebrating fresh textures, rich dips, and global taste.</p>
+                    </div>
+                </div>
+
+                <div class="signature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="signature-image">
+                        <img src="{% static 'restaurant/images/dish-placeholder.jpg' %}" alt="Carbonara Supreme">
+                    </div>
+                    <div class="signature-content">
+                        <h3>Carbonara Supreme</h3>
+                        <p>A comforting modern classic with a smooth, rich, and satisfying finish.</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="section-action" data-aos="fade-up">
+            <a href="{% url 'signature_dishes' %}" class="btn-primary">View Signature Dishes</a>
+        </div>
+    </div>
+</section>
+
+<section class="menu-preview section-space">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Our Menu</span>
+            <h2>Explore Food Categories</h2>
+            <p>From breakfast to biriyani, discover a variety of dishes crafted for every craving.</p>
+        </div>
+
+        <div class="menu-category-grid">
+            {% for category in menu_categories %}
+                <div class="menu-category-card" data-aos="flip-left" data-aos-delay="{{ forloop.counter0 }}0">
+                    <div class="menu-category-image">
+                        {% if category.image %}
+                            <img src="{{ category.image.url }}" alt="{{ category.name }}">
+                        {% else %}
+                            <img src="{% static 'restaurant/images/menu-placeholder.jpg' %}" alt="{{ category.name }}">
+                        {% endif %}
+                    </div>
+                    <div class="menu-category-content">
+                        <h3>{{ category.name }}</h3>
+                        <p>
+                            {% if category.description %}
+                                {{ category.description|truncatewords:18 }}
+                            {% else %}
+                                Delicious dishes thoughtfully prepared to satisfy every taste.
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="menu-category-card" data-aos="flip-left">
+                    <div class="menu-category-image">
+                        <img src="{% static 'restaurant/images/menu-placeholder.jpg' %}" alt="Breakfast">
+                    </div>
+                    <div class="menu-category-content">
+                        <h3>Breakfast</h3>
+                        <p>Fresh and comforting morning favorites to begin your day with taste.</p>
+                    </div>
+                </div>
+
+                <div class="menu-category-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="menu-category-image">
+                        <img src="{% static 'restaurant/images/menu-placeholder.jpg' %}" alt="Lunch">
+                    </div>
+                    <div class="menu-category-content">
+                        <h3>Lunch</h3>
+                        <p>Wholesome and satisfying meals with authentic flavors and variety.</p>
+                    </div>
+                </div>
+
+                <div class="menu-category-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="menu-category-image">
+                        <img src="{% static 'restaurant/images/menu-placeholder.jpg' %}" alt="Biriyani">
+                    </div>
+                    <div class="menu-category-content">
+                        <h3>Biriyani</h3>
+                        <p>Rich aromas, layered spices, and signature rice dishes full of flavor.</p>
+                    </div>
+                </div>
+
+                <div class="menu-category-card" data-aos="flip-left" data-aos-delay="300">
+                    <div class="menu-category-image">
+                        <img src="{% static 'restaurant/images/menu-placeholder.jpg' %}" alt="Curries">
+                    </div>
+                    <div class="menu-category-content">
+                        <h3>Curries</h3>
+                        <p>Classic gravies and spicy favorites prepared with deep traditional taste.</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="section-action" data-aos="fade-up">
+            <a href="{% url 'menu' %}" class="btn-primary">View Full Menu</a>
+        </div>
+    </div>
+</section>
+
+<section class="clients-section section-space dark-section">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Trusted By</span>
+            <h2>Serving Individuals and Businesses</h2>
+            <p>Our food experience is trusted by valued customers and recognized clients.</p>
+        </div>
+
+        <div class="clients-grid" data-aos="fade-up">
+            {% for client in clients %}
+                <div class="client-box">
+                    {% if client.logo %}
+                        <img src="{{ client.logo.url }}" alt="{{ client.name }}">
+                    {% else %}
+                        <span>{{ client.name }}</span>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <div class="client-box"><span>IBS Software</span></div>
+                <div class="client-box"><span>Strada</span></div>
+                <div class="client-box"><span>Paradigm</span></div>
+                <div class="client-box"><span>Fedserve</span></div>
+                <div class="client-box"><span>Dynamed</span></div>
+                <div class="client-box"><span>Mitsogo</span></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="branches-section section-space">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Our Branches</span>
+            <h2>Visit a Chillout Location Near You</h2>
+            <p>Explore our growing presence and discover the Chillout experience across locations.</p>
+        </div>
+
+        <div class="branches-grid">
+            {% for branch in branches %}
+                <div class="branch-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}0">
+                    <div class="branch-card-top">
+                        <h3>{{ branch.name }}</h3>
+                        {% if branch.phone %}
+                            <a href="tel:{{ branch.phone }}" class="branch-call"><i class="fa-solid fa-phone"></i></a>
+                        {% endif %}
+                    </div>
+
+                    <p>
+                        {% if branch.address %}
+                            {{ branch.address|truncatewords:18 }}
+                        {% else %}
+                            Premium dining destination with quality dishes and warm hospitality.
+                        {% endif %}
+                    </p>
+
+                    <div class="branch-meta">
+                        {% if branch.opening_hours %}
+                            <span><i class="fa-regular fa-clock"></i> {{ branch.opening_hours }}</span>
+                        {% endif %}
+                    </div>
+
+                    {% if branch.map_link %}
+                        <a href="{{ branch.map_link }}" target="_blank" class="section-link">Get Directions <i class="fa-solid fa-arrow-right"></i></a>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <div class="branch-card" data-aos="fade-up">
+                    <div class="branch-card-top">
+                        <h3>Carnival Infopark</h3>
+                    </div>
+                    <p>Experience premium dining and delicious cuisine in a welcoming setting.</p>
+                </div>
+
+                <div class="branch-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="branch-card-top">
+                        <h3>IBS</h3>
+                    </div>
+                    <p>Freshly prepared dishes and quality service for every food lover.</p>
+                </div>
+
+                <div class="branch-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="branch-card-top">
+                        <h3>Infopark Phase 2</h3>
+                    </div>
+                    <p>Modern food experience with authentic flavor and comfort.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="section-action" data-aos="fade-up">
+            <a href="{% url 'branches' %}" class="btn-primary">View All Branches</a>
+        </div>
+    </div>
+</section>
+
+<section class="contact-cta section-space dark-section">
+    <div class="container">
+        <div class="contact-cta-box" data-aos="zoom-in">
+            <span class="section-badge">Contact Us</span>
+            <h2>Plan Your Next Food Stop at Chillout</h2>
+
+            <div class="contact-cta-info">
+                <div>
+                    <h4>Call Us</h4>
+                    <p>
+                        {% if site_settings and site_settings.phone %}
+                            {{ site_settings.phone }}
+                        {% else %}
+                            +91 6238296908
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div>
+                    <h4>Opening Hours</h4>
+                    <p>
+                        {% if site_settings and site_settings.opening_hours %}
+                            {{ site_settings.opening_hours }}
+                        {% else %}
+                            8 AM to 11 PM
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div>
+                    <h4>Location</h4>
+                    <p>
+                        {% if site_settings and site_settings.address %}
+                            {{ site_settings.address|truncatewords:10 }}
+                        {% else %}
+                            Thengode, Thrikkakara, Kakkanad, Ernakulam
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="{% url 'contact' %}" class="btn-primary">Contact Us</a>
+                <a href="tel:{% if site_settings and site_settings.phone %}{{ site_settings.phone }}{% else %}+916238296908{% endif %}" class="btn-secondary">Call Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}Branches | Chillout Restaurant{% endblock %}
+
+{% block content %}
+
+<section class="inner-hero branches-hero">
+    <div class="container">
+        <div class="inner-hero-content" data-aos="fade-up">
+            <span class="section-badge">Our Branches</span>
+            <h1>Explore Our Shop Locations</h1>
+            <p>
+                Discover the Chillout locations and find the branch nearest to you through our visual branch listing.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="branches-poster-page section-space">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Our Shops</span>
+            <h2>View All Branches</h2>
+            <p>Tap the image below to view the branch poster in a larger size.</p>
+        </div>
+
+        <div class="branches-poster-wrapper" data-aos="fade-up">
+            <div class="branches-poster-card">
+                <img src="{% static 'restaurant/images/branches-poster.jpg' %}" alt="Chillout Branches Poster" class="branch-popup-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="branches-connect section-space dark-section">
+    <div class="container">
+        <div class="contact-cta-box" data-aos="zoom-in">
+            <span class="section-badge">Visit Chillout</span>
+            <h2>Choose Your Nearest Chillout Location</h2>
+            <p class="menu-cta-text">
+                Visit one of our locations and enjoy authentic traditional and modern food in a welcoming atmosphere.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{% url 'contact' %}" class="btn-primary">Contact Us</a>
+                <a href="{% url 'menu' %}" class="btn-secondary">View Menu</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="branch-image-modal" id="branchImageModal">
+    <span class="branch-image-close" id="branchImageClose">&times;</span>
+    <img class="branch-image-modal-content" id="branchImagePreview" alt="Expanded Branch Poster">
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const branchImage = document.querySelector('.branch-popup-image');
+    const branchModal = document.getElementById('branchImageModal');
+    const branchModalImg = document.getElementById('branchImagePreview');
+    const branchModalClose = document.getElementById('branchImageClose');
+
+    if (branchImage) {
+        branchImage.addEventListener('click', function () {
+            branchModal.style.display = 'flex';
+            branchModalImg.src = this.src;
+        });
+    }
+
+    if (branchModalClose) {
+        branchModalClose.addEventListener('click', function () {
+            branchModal.style.display = 'none';
+        });
+    }
+
+    if (branchModal) {
+        branchModal.addEventListener('click', function (e) {
+            if (e.target === branchModal) {
+                branchModal.style.display = 'none';
+            }
+        });
+    }
+</script>
+{% endblock %}

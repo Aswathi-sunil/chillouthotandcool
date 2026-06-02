@@ -1,0 +1,135 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}Gallery | Chillout Restaurant{% endblock %}
+
+{% block content %}
+
+<section class="inner-hero gallery-hero">
+    <div class="container">
+        <div class="inner-hero-content" data-aos="fade-up">
+            <span class="section-badge">Gallery</span>
+            <h1>A Visual Taste of Chillout</h1>
+            <p>
+                Explore our food, atmosphere, and signature presentation through a curated collection of memorable moments.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="gallery-page section-space">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Photo Gallery</span>
+            <h2>See the Chillout Experience</h2>
+            <p>From signature dishes to dining moments, our gallery gives you a glimpse into the flavour and atmosphere of Chillout.</p>
+        </div>
+
+        <div class="gallery-grid">
+            {% for image in images %}
+                <div class="gallery-card" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0 }}0">
+                    <img src="{{ image.image.url }}" alt="{{ image.title|default:'Gallery Image' }}">
+
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>
+                                {% if image.title %}
+                                    {{ image.title }}
+                                {% else %}
+                                    Chillout Moments
+                                {% endif %}
+                            </h3>
+
+                            <p>
+                                {% if image.category %}
+                                    {{ image.category }}
+                                {% else %}
+                                    Premium Dining
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="gallery-card" data-aos="zoom-in">
+                    <img src="{% static 'restaurant/images/dish-placeholder.jpg' %}" alt="Gallery 1">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>Signature Dishes</h3>
+                            <p>Premium Dining</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-card" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="{% static 'restaurant/images/menu-placeholder.jpg' %}" alt="Gallery 2">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>Authentic Flavours</h3>
+                            <p>Restaurant Special</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-card" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="{% static 'restaurant/images/about-placeholder.jpg' %}" alt="Gallery 3">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>Food Experience</h3>
+                            <p>Chillout Moments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-card" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="{% static 'restaurant/images/dish-placeholder.jpg' %}" alt="Gallery 4">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>Chef’s Specials</h3>
+                            <p>Signature Taste</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-card" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="{% static 'restaurant/images/menu-placeholder.jpg' %}" alt="Gallery 5">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>Dining Atmosphere</h3>
+                            <p>Warm Hospitality</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-card" data-aos="zoom-in" data-aos-delay="500">
+                    <img src="{% static 'restaurant/images/about-placeholder.jpg' %}" alt="Gallery 6">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>Restaurant Highlights</h3>
+                            <p>Visual Story</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="gallery-cta section-space dark-section">
+    <div class="container">
+        <div class="contact-cta-box" data-aos="zoom-in">
+            <span class="section-badge">Visit Chillout</span>
+            <h2>Come and Experience It in Person</h2>
+            <p class="menu-cta-text">
+                Great food deserves to be seen and tasted. Visit Chillout to enjoy authentic traditional and modern dining in a welcoming atmosphere.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{% url 'branches' %}" class="btn-primary">View Branches</a>
+                <a href="{% url 'contact' %}" class="btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

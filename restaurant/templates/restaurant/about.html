@@ -1,0 +1,213 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+
+{% block title %}About | Chillout Restaurant{% endblock %}
+
+{% block content %}
+
+<section class="inner-hero about-hero">
+    <div class="container">
+        <div class="inner-hero-content" data-aos="fade-up">
+            <span class="section-badge">About Chillout</span>
+            <h1>Tradition, Taste, and Modern Dining</h1>
+            <p>
+                Discover the story behind Chillout, where authentic flavors, quality ingredients, and hospitality come together to create a memorable dining experience.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="about-story section-space">
+    <div class="container">
+        <div class="about-story-grid">
+            <div class="about-story-image" data-aos="fade-right">
+                {% if about_obj and about_obj.image %}
+                    <img src="{{ about_obj.image.url }}" alt="{{ about_obj.title }}">
+                {% else %}
+                    <img src="{% static 'restaurant/images/about-placeholder.jpg' %}" alt="About Chillout">
+                {% endif %}
+            </div>
+
+            <div class="about-story-content" data-aos="fade-left">
+                <span class="section-badge">Our Story</span>
+
+                <h2>
+                    {% if about_obj and about_obj.title %}
+                        {{ about_obj.title }}
+                    {% else %}
+                        A Restaurant Built on Flavor and Hospitality
+                    {% endif %}
+                </h2>
+
+                <p>
+                    {% if about_obj and about_obj.description %}
+                        {{ about_obj.description }}
+                    {% else %}
+                        Chillout is a renowned restaurant serving food lovers with a rich selection of Indian and international cuisines. Built on quality, consistency, and hospitality, the restaurant offers a premium dining experience that blends traditional taste with modern food culture.
+                    {% endif %}
+                </p>
+
+                <div class="about-mini-info">
+                    <div class="about-mini-box">
+                        <h4>Established</h4>
+                        <p>
+                            {% if about_obj and about_obj.established_year %}
+                                {{ about_obj.established_year }}
+                            {% else %}
+                                2017
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="about-mini-box">
+                        <h4>Cuisine</h4>
+                        <p>Indian & International</p>
+                    </div>
+
+                    <div class="about-mini-box">
+                        <h4>Experience</h4>
+                        <p>Authentic & Premium</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-values section-space dark-section">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Why We Stand Out</span>
+            <h2>What Defines the Chillout Experience</h2>
+            <p>Every detail is shaped to deliver quality food, comforting taste, and memorable dining moments.</p>
+        </div>
+
+        <div class="about-values-grid">
+            {% for feature in features %}
+                <div class="about-value-card" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0 }}0">
+                    <div class="about-value-icon">
+                        {% if feature.icon %}
+                            <i class="{{ feature.icon }}"></i>
+                        {% else %}
+                            <i class="fa-solid fa-utensils"></i>
+                        {% endif %}
+                    </div>
+                    <h3>{{ feature.title }}</h3>
+                    <p>{{ feature.description }}</p>
+                </div>
+            {% empty %}
+                <div class="about-value-card" data-aos="zoom-in">
+                    <div class="about-value-icon"><i class="fa-solid fa-kitchen-set"></i></div>
+                    <h3>Centralised Kitchen</h3>
+                    <p>Quality, consistency, and care in every dish prepared.</p>
+                </div>
+
+                <div class="about-value-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="about-value-icon"><i class="fa-solid fa-bowl-food"></i></div>
+                    <h3>Wide Food Variety</h3>
+                    <p>From breakfast to curries and biriyani, everything under one roof.</p>
+                </div>
+
+                <div class="about-value-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="about-value-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                    <h3>Hygienic Preparation</h3>
+                    <p>Clean, safe, and carefully maintained kitchen standards.</p>
+                </div>
+
+                <div class="about-value-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="about-value-icon"><i class="fa-solid fa-pepper-hot"></i></div>
+                    <h3>Authentic Flavours</h3>
+                    <p>A perfect blend of traditional taste and modern presentation.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="about-highlight section-space">
+    <div class="container">
+        <div class="about-highlight-box" data-aos="fade-up">
+            <div class="about-highlight-left">
+                <span class="section-badge">Our Promise</span>
+                <h2>More Than a Meal, It’s a Food Experience</h2>
+                <p>
+                    At Chillout, every plate is prepared to bring together rich taste, quality ingredients, and a welcoming dining atmosphere. We believe good food should not only satisfy hunger, but also create moments people remember.
+                </p>
+            </div>
+
+            <div class="about-highlight-right">
+                <div class="about-stat-card">
+                    <h3>
+                        {% if about_obj and about_obj.established_year %}
+                            {{ about_obj.established_year }}
+                        {% else %}
+                            2017
+                        {% endif %}
+                    </h3>
+                    <p>Serving Since</p>
+                </div>
+
+                <div class="about-stat-card">
+                    <h3>Indian</h3>
+                    <p>& International Cuisine</p>
+                </div>
+
+                <div class="about-stat-card">
+                    <h3>Quality</h3>
+                    <p>Driven Dining</p>
+                </div>
+
+                <div class="about-stat-card">
+                    <h3>Warm</h3>
+                    <p>Hospitality Experience</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-legal section-space dark-section">
+    <div class="container">
+        <div class="section-header center" data-aos="fade-up">
+            <span class="section-badge">Trust & Standards</span>
+            <h2>Committed to Quality and Compliance</h2>
+            <p>Our restaurant operates with a strong focus on authenticity, hygiene, and responsible food service standards.</p>
+        </div>
+
+        <div class="about-legal-grid">
+            <div class="about-legal-card" data-aos="fade-up">
+                <h3>Food Quality</h3>
+                <p>Prepared with care using ingredients and processes that support consistent taste and hygiene.</p>
+            </div>
+
+            <div class="about-legal-card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Professional Service</h3>
+                <p>Built around customer satisfaction, warm hospitality, and reliable dining experience.</p>
+            </div>
+
+            <div class="about-legal-card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Trusted Brand</h3>
+                <p>A growing restaurant identity known for offering traditional and modern food under one brand experience.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-page-cta section-space">
+    <div class="container">
+        <div class="contact-cta-box" data-aos="zoom-in">
+            <span class="section-badge">Visit Us</span>
+            <h2>Experience Chillout for Yourself</h2>
+            <p class="menu-cta-text">
+                Come and enjoy authentic traditional and modern food in a space crafted for comfort, quality, and memorable dining.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="{% url 'menu' %}" class="btn-primary">Explore Menu</a>
+                <a href="{% url 'contact' %}" class="btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
